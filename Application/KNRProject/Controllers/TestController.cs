@@ -6,13 +6,12 @@ using System.Web.Mvc;
 
 namespace KNRProject.Controllers
 {
-    public class RegisterController : Controller
+    public class TestController : Controller
     {
-        [HttpPost]
-        // GET: Register
-        public ActionResult Register()
+        // GET: Test
+        public ActionResult Index()
         {
-            return View();
+            return View("Test");
         }
     }
 }

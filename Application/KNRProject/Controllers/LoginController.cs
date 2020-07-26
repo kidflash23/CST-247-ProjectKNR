@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KNRProject.Models;
+using KNRProject.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +10,23 @@ namespace KNRProject.Controllers
 {
     public class LoginController : Controller
     {
-        [HttpGet]
         // GET: Login
-        public ActionResult Login()
+        public ActionResult Index(UserModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View("Login");
+            }
+            SecurityService sa = new SecurityService();
+            if (sa.Authenticate(model))
+            {
+                //Login Passed
+                return View("LoginPassed", model);
+            }
+            else
+            {
+                return View("LoginFailed");
+            }
         }
     }
 }

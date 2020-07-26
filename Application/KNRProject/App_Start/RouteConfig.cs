@@ -19,14 +19,14 @@ namespace KNRProject
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
             routes.MapRoute(
-                name: "Login",
-                url: "{Login}",
-                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
+                name: "Registration",
+                url: "{Registration}",
+                defaults: new { controller = "Registration", action = "Registration", id = UrlParameter.Optional }
             );
             routes.MapRoute(
-                name: "Register",
-                url: "{Register}",
-                defaults: new { controller = "Register", action = "Index", id = UrlParameter.Optional }
+                name: "Test",
+                url: "{Test}",
+                defaults: new { controller = "Test", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
