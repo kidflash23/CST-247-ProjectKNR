@@ -10,17 +10,19 @@ namespace DataLibrary.BusinessLogic
 {
     public class UserProcessor
     {
-        public static int createUser(int UserID, string FirstName, string LastName,
-                                     string Email, string Sex, string State)
+        public static int createUser(int UserID, string FirstName, string LastName, string Sex, int Age, string State, string Username, string Password, string Email)
         {
             UserModel data = new UserModel
             {
                 UserID = UserID,
                 FirstName = FirstName,
                 LastName = LastName,
-                Email = Email,
                 Sex = Sex,
-                State = State
+                Age = Age,
+                State = State,
+                Username = Username,
+                Password = Password,
+                Email = Email                
             };
             //string sql = @"INSERT INTO dbo.[User] VALUES (@UserID, @FirstName, @LastName, @Email, @Sex, @State);";
             string sql = @"INSERT INTO dbo.[User] (UserID, FirstName, LastName, Sex, Age, State, Username, Password, Email) 
@@ -30,7 +32,7 @@ namespace DataLibrary.BusinessLogic
 
         public static List<UserModel> LoadUsers()
         {
-            string sql = @"SELECT * FROM dbo.User;";
+            string sql = @"SELECT * FROM dbo.[User];";
             return SQLDataAccess.LoadData<UserModel>(sql);
         }
 

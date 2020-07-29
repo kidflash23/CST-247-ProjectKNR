@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using DataLibrary;
 using static DataLibrary.BusinessLogic.UserProcessor;
 using System.Configuration;
+using DataLibrary.BusinessLogic;
 
 namespace MVCProject.Controllers
 {
@@ -31,24 +32,49 @@ namespace MVCProject.Controllers
             return View();
         }
 
+        public ActionResult ViewUsers()
+        {
+            ViewBag.Message = "ViewUsers";
+            var data = LoadUsers();
+            List<UserModel> users = new List<UserModel>();
+            foreach (var row in data)
+            {
+                users.Add(new UserModel
+                {
+                    UserID = row.UserID,
+                    FirstName = row.FirstName,
+                    LastName = row.LastName,
+                    Sex = row.Sex,
+                    Age = row.Age,
+                    State = row.State,
+                    Username = row.Username,
+                    Password = row.Password,
+                    EmailAddress = row.Email
+                }) ;
+            }
+            return View(users);
+        }
+
+
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(UserModel model)
         {
-            ViewBag.Message = "Register.cshtml";
+            ViewBag.Message = "Register";
             if (ModelState.IsValid)
             {
-                createUser(model.UserID, model.FirstName, model.LastName, model.EmailAddress, model.Sex, model.State);
-                return RedirectToAction("Index.cshtml");
+                createUser(model.UserID, model.FirstName, model.LastName, model.Sex, model.Age, model.State, model.Username, model.Password, model.EmailAddress);
+                return RedirectToAction("Index");
             }
             return View();
         }
 
 
-        public ActionResult Register()
-        {
-            ViewBag.Message = "Register.cshtml";
-            return View();
-        }
+
     }
 }
