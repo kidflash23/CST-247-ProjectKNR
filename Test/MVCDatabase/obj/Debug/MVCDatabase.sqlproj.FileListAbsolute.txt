@@ -1,0 +1,10 @@
+C:\Users\Kurt\Source\Repos\MVCDatabase\bin\Debug\MVCDatabase.dacpac
+C:\Users\Kurt\Source\Repos\MVCDatabase\bin\Debug\MVCDatabase.dll
+C:\Users\Kurt\Source\Repos\MVCDatabase\bin\Debug\MVCDatabase.pdb
+C:\Users\Kurt\Source\Repos\MVCDatabase\obj\Debug\MVCDatabase.sqlprojAssemblyReference.cache
+C:\Users\Kurt\Source\Repos\MVCDatabase\obj\Debug\Model.xml
+C:\Users\Kurt\Source\Repos\MVCDatabase\obj\Debug\refactor.xml
+C:\Users\Kurt\Source\Repos\MVCDatabase\obj\Debug\postdeploy.sql
+C:\Users\Kurt\Source\Repos\MVCDatabase\obj\Debug\predeploy.sql
+C:\Users\Kurt\Source\Repos\MVCDatabase\obj\Debug\MVCDatabase.dll
+C:\Users\Kurt\Source\Repos\MVCDatabase\obj\Debug\MVCDatabase.pdb
