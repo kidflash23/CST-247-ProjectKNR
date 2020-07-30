@@ -9,13 +9,15 @@ namespace MVCProject.Controllers
 {
     public class GameController : Controller
     {
-        // GET: Game
-        [HttpPost]
+        public ActionResult Index()
+        {
+            return View();
+        }
         public ActionResult Start()
         {
             ViewBag.Message = "Start";
             GameBoardModel board = new GameBoardModel();
-            return RedirectToAction("Game");
+            return View("Start");
         }
         public ActionResult Game(GameBoardModel board)
         {

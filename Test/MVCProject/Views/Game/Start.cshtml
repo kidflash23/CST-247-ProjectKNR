@@ -7,56 +7,51 @@
 <h2>Start</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Game", "Game", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>GameBoardModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Width, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Width, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Width, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Length, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Length, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Length, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Mines, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Mines, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Mines, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Width, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Width, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Width, "", new { @class = "text-danger" })
         </div>
     </div>
-}
 
-@using (Html.BeginForm("Start", "Game"))
-{
-    <input type="submit" value="Start" />
-}
+    <div class="form-group">
+        @Html.LabelFor(model => model.Length, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Length, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Length, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Mines, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Mines, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Mines, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @*<input type="submit" value="Start Game" class="btn btn-default" formaction="" />*@
+            <form method="post">
+                <button asp-controller="Game" asp-action="Game">Start</button>
+            </form>
+        </div>
+    </div>
+
+    
 
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
-
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls.WebParts;
@@ -8,8 +9,11 @@ namespace MVCProject.Models
 {
     public class GameBoardModel
     {
+        [DefaultValue(10)]
         public int Width { get; set; }
+        [DefaultValue(10)]
         public int Length { get; set; }
+        [DefaultValue(10)]
         public int Mines { get; set; }
         public bool winCondition { get; set; }
 
