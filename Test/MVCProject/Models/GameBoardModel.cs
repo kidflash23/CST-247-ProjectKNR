@@ -4,15 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls.WebParts;
 
-namespace KNRProject.Models
+namespace MVCProject.Models
 {
     public class GameBoardModel
     {
         public int Width { get; set; }
         public int Length { get; set; }
         public int Mines { get; set; }
+        public bool winCondition { get; set; }
 
-        public GameBoardCellModel[,] board;
+        public GameBoardCellModel[,] board { get; set; }
 
 
         //With no argument's the default size will be 10x10
@@ -21,6 +22,7 @@ namespace KNRProject.Models
             this.Width = 10;
             this.Length = 10;
             this.board = new GameBoardCellModel[this.Width, this.Length];
+            this.winCondition = false;
             int numCells = this.Width * this.Length;
             //int for numbering each cell, used for mine generation
             int cellIDNumber = 0;
@@ -43,6 +45,7 @@ namespace KNRProject.Models
             this.Width = sideLength;
             this.Length = sideLength;
             this.board = new GameBoardCellModel[this.Width, this.Length];
+            this.winCondition = false;
             int numCells = this.Width * this.Length;
             //int for numbering each cell, used for mine generation
             int cellIDNumber = 0;
@@ -55,6 +58,7 @@ namespace KNRProject.Models
                     this.board[i, j] = new GameBoardCellModel(cellIDNumber);
                 }
             }
+            deployMines();
         }
         //Double Argument Constructor - for a game board with different side length's
         public GameBoardModel(int width, int length)
@@ -62,6 +66,7 @@ namespace KNRProject.Models
             this.Width = width;
             this.Length = length;
             this.board = new GameBoardCellModel[this.Width, this.Length];
+            this.winCondition = false;
             int numCells = this.Width * this.Length;
             //int for numbering each cell, used for mine generation
             int cellIDNumber = 0;
@@ -74,6 +79,7 @@ namespace KNRProject.Models
                     this.board[i, j] = new GameBoardCellModel(cellIDNumber);
                 }
             }
+            deployMines();
         }
         //-------------------------------------------------------------------------------
 

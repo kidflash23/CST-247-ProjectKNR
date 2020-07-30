@@ -13,8 +13,11 @@ namespace MVCProject
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-
-
+            routes.MapRoute(
+                name: "Start",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Game", action = "Start", id = UrlParameter.Optional }
+            );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

@@ -1,0 +1,33 @@
+﻿@model MVCProject.Models.GameBoardModel
+
+@{
+    ViewBag.Title = "Game";
+}
+
+
+<h2>Game</h2>
+
+<div>
+    @Html.Label("Minesweeper")
+    <br />
+
+    @for (int i = 0; i < Model.Width; i++)
+    {
+        for (int j = 0; j < Model.Length; j++)
+        {
+            <img src="~/Images/mine.jpg" />
+            @*if (Model.board[i, j].isMine)
+                {
+                    <img src="~/Images/mine.jpg" />
+                }
+                else
+                {
+                    <img src="~/Images/flag.png" />
+                }*@
+        }
+        <br />
+    }
+
+
+
+</div>
