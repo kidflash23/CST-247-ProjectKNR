@@ -173,6 +173,7 @@
     <Content Include="Views\Button\Button.cshtml" />
     <Content Include="Views\Game\Game.cshtml" />
     <Content Include="Views\Game\Start.cshtml" />
+    <Content Include="Views\Game\_GameBoard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

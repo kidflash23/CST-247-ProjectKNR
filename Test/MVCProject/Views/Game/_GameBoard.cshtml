@@ -1,0 +1,24 @@
+﻿@model MVCProject.Models.GameBoardModel
+
+@using (Html.BeginForm("HandleButtonClick", "Game"))
+{
+    for (int i = 0; i < Model.Width; i++)
+    {
+        for (int j = 0; j < Model.Length; j++)
+        {
+            <button type="submit" name="mine" value=@Model.board[i,j].cellID>
+                @*<img src="~/Images/mine.jpg" />*@
+                @if (Model.board[i, j].isMine)
+                {
+                    <img src="~/Images/mine.jpg" />
+                }
+                else
+                {
+                    @Model.board[i, j].cellID
+                    @*<img src="~/Images/flag.png" />*@
+                }
+            </button>
+        }
+        <br />
+    }
+}

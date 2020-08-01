@@ -39,33 +39,13 @@ namespace MVCProject.Models
                     this.board[i, j] = new GameBoardCellModel(cellIDNumber);
                 }
             }
+            deployMines(20);
         }
 
         //Constructors
         //-------------------------------------------------------------------------------
-        //Single Argument Constructor - for square game board
-        public GameBoardModel(int sideLength)
-        {
-            this.Width = sideLength;
-            this.Length = sideLength;
-            this.board = new GameBoardCellModel[this.Width, this.Length];
-            this.winCondition = false;
-            int numCells = this.Width * this.Length;
-            //int for numbering each cell, used for mine generation
-            int cellIDNumber = 0;
-            //Loop puts a cell object in each spot of the 2d array
-            for (int i = 0; i < this.Width; i++)
-            {
-                for (int j = 0; j < this.Length; j++)
-                {
-                    cellIDNumber++;
-                    this.board[i, j] = new GameBoardCellModel(cellIDNumber);
-                }
-            }
-            deployMines();
-        }
-        //Double Argument Constructor - for a game board with different side length's
-        public GameBoardModel(int width, int length)
+        //Triple Argument Constructor - for a non-default game
+        public GameBoardModel(int width, int length, int numberOfMines)
         {
             this.Width = width;
             this.Length = length;
@@ -83,7 +63,7 @@ namespace MVCProject.Models
                     this.board[i, j] = new GameBoardCellModel(cellIDNumber);
                 }
             }
-            deployMines();
+            deployMines(numberOfMines);
         }
         //-------------------------------------------------------------------------------
 
@@ -93,53 +73,29 @@ namespace MVCProject.Models
 
         //Mine Deployment
         //-------------------------------------------------------------------------------
-        //Default difficulty will be 20% mines
-        public void deployMines()
+
+        //If difficulty is specified
+        public void deployMines(int numMines)
         {
-            int numberOfTotalCells = this.Width * this.Length;
-            decimal difficulty = .2m;
-            int numMines = (int)(numberOfTotalCells * difficulty);
-            //Determine which cells should be mines and set them to be a mine
+            List<int> cellIDsToSetToMines = new List<int>();
             for(int i = 0; i < numMines; i++)
             {
                 //Generate a cellID to change to a mine
                 Random r = new Random();
-                int randomNumber = r.Next(1, numberOfTotalCells);
-                //Now that you have the cellID to place a mine in, go do it
-                for(int row = 0; row < this.Width; row++)
-                {
-                    for (int column = 0; column < this.Length; Length++)
-                    {
-                        //Check if this is the right cell
-                        if(board[row,column].cellID == randomNumber)
-                        {
-                            //Change mine status to true
-                            board[row, column].isMine = true;
-                        }
-                    }
-                }
+                int randomNumber = r.Next(0, this.board.Length-1);
+                cellIDsToSetToMines.Add(randomNumber);
             }
 
-        }
-        //If difficulty is specified
-        public void deployMines(decimal difficulty)
-        {
-            int numberOfTotalCells = this.Width * this.Length;
-            decimal gameDifficulty = difficulty;
-            int numMines = (int)(numberOfTotalCells * difficulty);
             //Determine which cells should be mines and set them to be a mine
-            for (int i = 0; i < numMines; i++)
+            foreach (int randomCellID in cellIDsToSetToMines)
             {
-                //Generate a cellID to change to a mine
-                Random r = new Random();
-                int randomNumber = r.Next(1, numberOfTotalCells);
                 //Now that you have the cellID to place a mine in, go do it
                 for (int row = 0; row < this.Width; row++)
                 {
                     for (int column = 0; column < this.Length; Length++)
                     {
                         //Check if this is the right cell
-                        if (board[row, column].cellID == randomNumber)
+                        if (board[row, column].cellID == randomCellID)
                         {
                             //Change mine status to true
                             board[row, column].isMine = true;
